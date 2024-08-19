@@ -3,31 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --silver: 170 170 170;
+  --dim-gray: 102 102 102;
+  --davys-gray: 85 85 85;
+  --delft-blue: 41 59 95;
+  --dark-purple: 38 28 44;
+  --blush: 212 93 121;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'Lexend', sans-serif;
+}
+
+h1 {
+  @apply text-5xl font-bold
+}
+
+h2 {
+  @apply text-4xl font-bold
+}
+
+h3 {
+  @apply text-accent mb-10
+}
+
+h4 {
+  @apply font-bold text-xl
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .wrapper {
+    @apply max-w-7xl mx-auto
   }
+
+  .bgPattern {
+    background-image: url("../../public/backgroundspatterns/pattern2.png");
+    background-repeat: repeat;
+  }
+
 }
