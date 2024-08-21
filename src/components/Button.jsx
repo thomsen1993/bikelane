@@ -1,12 +1,10 @@
 import React from 'react'
 
-import Link from 'next/link'
-
 const Button = ({href, children}) => {
   return (
-    <Link href={href} className='inline-block bg-accent text-white rounded-md px-6 py-3'>
+    <a href={href} className='inline-block bg-accent text-white rounded-md hover:-translate-y-1 hover:bg-white hover:text-accent transition px-6 py-3'>
       {children}
-    </Link>
+    </a>
   )
 }
 

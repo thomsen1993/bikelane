@@ -6,7 +6,7 @@ import useRequestData from "@/hooks/useRequestData";
 
 import Image from "next/image";
 import bgCards from "../../../../public/backgroundspatterns/bg5.jpg";
-import bg from "../../../../public/backgrounds and patterns/bg2.jpg";
+import bg from "../../../../public/backgroundspatterns/bg2.jpg";
 
 import Link from "next/link";
 
@@ -14,7 +14,12 @@ import { FaInstagram, FaTwitter, FaFacebook } from "react-icons/fa";
 
 const Testimonial = () => {
   const { data, isLoading, error, makeRequest } = useRequestData();
-  const { data: heroesData, isLoading: heroesLoading, error: heroesError, makeRequest: heroesMakeRequest } = useRequestData();
+  const {
+    data: heroesData,
+    isLoading: heroesLoading,
+    error: heroesError,
+    makeRequest: heroesMakeRequest,
+  } = useRequestData();
 
   useEffect(() => {
     makeRequest("http://localhost:5888/testimonials/", "GET", null);
@@ -33,7 +38,7 @@ const Testimonial = () => {
       <Image src={bg} alt="" className="col-start-1 row-start-1"></Image>
       <div className="wrapper col-start-1 row-start-1">
         <div className="grid grid-cols-2 items-end mb-20">
-          <div className="">
+          <div>
             <h3>Hvem vi er</h3>
             <h2>{heroesData[3].title}</h2>
           </div>
@@ -44,7 +49,11 @@ const Testimonial = () => {
             <div key={event._id} className="relative">
               <div className="absolute right-7 top-7 text-white flex flex-col gap-2">
                 {socials.map((event, index) => (
-                  <Link href={event.href} key={index} className="bg-accent rounded-full p-2">
+                  <Link
+                    href={event.href}
+                    key={index}
+                    className="bg-accent rounded-full p-2"
+                  >
                     {event.name}
                   </Link>
                 ))}
@@ -77,15 +86,15 @@ const Testimonial = () => {
 const socials = [
   {
     name: <FaFacebook />,
-    href: "#"
+    href: "#",
   },
   {
     name: <FaInstagram />,
-    href: "#"
+    href: "#",
   },
   {
     name: <FaTwitter />,
-    href: "#"
+    href: "#",
   },
 ];
 

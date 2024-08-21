@@ -6,16 +6,16 @@ import useRequestData from "@/hooks/useRequestData";
 
 import CommunityLayout from "@/components/CommunityLayout";
 
-const Community = () => {
-  const { data, isLoading, error, makeRequest } = useRequestData();
+const CommunityAbout = () => {
+    const { data, isLoading, error, makeRequest } = useRequestData();
 
-  useEffect(() => {
-    makeRequest("http://localhost:5888/community/", "GET", null);
-  }, []);
+    useEffect(() => {
+        makeRequest("http://localhost:5888/community/", "GET", null);
+      }, []);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error... 😒</p>;
-  if (!data) return null;
+      if (isLoading) return <p>Loading...</p>;
+      if (error) return <p>Error... 😒</p>;
+      if (!data) return null;
 
   return (
     <section className="wrapper my-20">
@@ -30,7 +30,7 @@ const Community = () => {
         keypoints={data.keypoints}
       />
     </section>
-  );
-};
+  )
+}
 
-export default Community;
+export default CommunityAbout

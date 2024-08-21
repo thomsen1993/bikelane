@@ -69,10 +69,10 @@ const NavBar = () => {
                     <MdKeyboardArrowDown className="group-hover:rotate-180 transition" />
                   ) : null}
                   {event.extra && (
-                    <ul className="absolute top-16 left-0 hidden group-hover:block group-hover:opacity-100 rounded-md bg-white shadow-lg py-3 px-2 mt-3">
+                    <ul className="absolute top-16 left-0 hidden group-hover:block group-hover:opacity-100 rounded-md bg-white shadow-lg mt-3">
                       {event.extra.map((e, i) => (
                         <li>
-                          <Link key={i} href={e.href}>
+                          <Link key={i} href={e.href} className="hover:bg-thirdary/20 rounded-md block px-5 py-3 ">
                             {e.name}
                           </Link>
                         </li>
@@ -93,37 +93,45 @@ const NavBar = () => {
 const navigation = [
   {
     name: "Forside",
-    href: "",
+    href: "/",
     icon: false,
   },
   {
     name: "Om os",
-    href: "",
+    href: "/about",
     icon: false,
   },
   {
     name: "Events",
-    href: "",
+    href: "/events",
     icon: true,
     extra: [
       {
-        name: "gg",
+        name: "Xtreme",
         href: "#",
       },
       {
-        name: "ggggggggggggggggg",
+        name: "Konkurrence",
+        href: "#",
+      },
+      {
+        name: "Motionister",
+        href: "#",
+      },
+      {
+        name: "Juniorer",
         href: "#",
       },
     ],
   },
   {
     name: "Kontakt",
-    href: "",
+    href: "/contact",
     icon: false,
   },
   {
     name: "Nyheder",
-    href: "",
+    href: "/news",
     icon: false,
   },
 ];

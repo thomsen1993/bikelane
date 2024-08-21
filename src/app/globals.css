@@ -16,11 +16,11 @@ body {
 }
 
 h1 {
-  @apply text-5xl font-bold
+  @apply text-5xl text-darkPurple font-bold
 }
 
 h2 {
-  @apply text-4xl font-bold
+  @apply text-4xl text-darkPurple font-bold
 }
 
 h3 {
@@ -28,7 +28,7 @@ h3 {
 }
 
 h4 {
-  @apply font-bold text-xl
+  @apply font-bold text-xl text-darkPurple
 }
 
 @layer utilities {

@@ -65,14 +65,14 @@ const Events = () => {
         </div>
         <div className="absolute top-1/2 flex justify-between w-full text-3xl opacity-0 group-hover:opacity-100 transition">
           <button
-            className="bg-white rounded-full border disabled:text-thirdary p-2"
+            className="bg-white rounded-full border disabled:text-thirdary disabled:cursor-not-allowed p-2"
             onClick={handlePrevious}
             disabled={first === 0}
           >
             <FaArrowLeft />
           </button>
           <button
-            className="bg-white rounded-full border disabled:text-thirdary p-2"
+            className="bg-white rounded-full border disabled:text-thirdary disabled:cursor-not-allowed p-2"
             onClick={handleNext}
             disabled={second >= data.length}
           >
