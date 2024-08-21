@@ -35,12 +35,12 @@ const Events = () => {
   return (
     <section className="mb-32">
       <div className="bg-darkBlue bgPattern">
-        <div className="grid grid-cols-2 items-end pt-20 pb-44 wrapper">
-          <div>
+        <div className="grid md:grid-cols-2 items-end pt-20 pb-44 wrapper">
+          <div className=" xl:px-0 px-5">
             <h3>Kom og vær med</h3>
             <h2 className="text-white">Her er vores seneste arrangementer</h2>
           </div>
-          <div className="justify-self-end">
+          <div className="md:justify-self-end md:mt-0 mt-10 xl:px-0 px-5">
             <Button href="https://swiperjs.com/element">Se alle events</Button>
           </div>
         </div>

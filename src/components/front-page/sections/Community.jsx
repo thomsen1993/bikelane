@@ -18,7 +18,7 @@ const Community = () => {
   if (!data) return null;
 
   return (
-    <section className="wrapper my-20">
+    <section className="wrapper my-20 xl:px-0 px-5">
       <CommunityLayout
         image1={data.image1}
         image2={data.image2}

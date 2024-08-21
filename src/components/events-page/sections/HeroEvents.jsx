@@ -16,7 +16,7 @@ const HeroEvents = () => {
   if (!data) return null;
 
   return (
-    <div className="wrapper text-center my-20">
+    <div className="wrapper text-center my-20 xl:px-0 px-5">
       <h3>{data[6].suptitle}</h3>
       <h2>{data[6].title}</h2>
     </div>

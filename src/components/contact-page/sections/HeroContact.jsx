@@ -19,23 +19,23 @@ const HeroContact = () => {
   if (!data) return null;
 
   return (
-    <section className="-mt-32">
+    <section className="xl:-mt-32 sm:-mt-32 -mt-20">
       <div className="grid items-center">
         <Image
           src={bg}
           alt=""
           className="w-full col-start-1 row-start-1"
         ></Image>
-        <div className="col-start-1 row-start-1 text-center wrapper">
+        <div className="col-start-1 row-start-1 text-center wrapper py-10">
           <h3 className="text-white">{data[4].suptitle}</h3>
-          <h2 className="text-white text-6xl">{data[4].title}</h2>
+          <h2 className="text-white ">{data[4].title}</h2>
         </div>
       </div>
       <article className="wrapper">
         <img
           src={"http://localhost:5888/images/hero/" + data[4].image}
           alt=""
-          className="w-full h-[30rem] object-cover rounded-xl -mt-52"
+          className="w-full max-h-[30rem] object-cover rounded-xl xl:-mt-52 sm:-mt-10 -mt-2 xl:px-0 px-5"
         />
       </article>
     </section>

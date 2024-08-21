@@ -19,17 +19,17 @@ const HeroAbout = () => {
   return (
     <section className="-mt-32 bg-darkBlue/10">
       <div className=" wrapper pt-48">
-        <div className="grid grid-cols-2 items-end mb-20">
-          <div>
+        <div className="grid md:grid-cols-2 items-end mb-20">
+          <div className="xl:px-0 px-5">
             <h3>{data[1].suptitle}</h3>
             <h2>{data[1].title}</h2>
           </div>
-          <div>
+          <div className=" xl:px-0 px-5">
             <p className="mb-10">{data[1].content}</p>
             <Button href="/contact">Kom og vær med</Button>
           </div>
         </div>
-        <figure className="grid ">
+        <figure className="grid xl:px-0 px-5">
           <img
             src={"http://localhost:5888/images/hero/" + data[1].image}
             alt=""

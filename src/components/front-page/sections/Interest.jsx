@@ -23,14 +23,14 @@ const Interest = () => {
   if (!data) return null;
 
   return (
-    <section className="grid grid-cols-2 wrapper my-20">
+    <section className="grid lg:grid-cols-2 wrapper my-20 xl:px-0 px-5">
       <div>
         <div>
           <h3>{data.suptitle}</h3>
           <h2>{data.title}</h2>
           <p className="my-10">{data.content}</p>
         </div>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {data.keypoints.map((event) => (
             <div className="flex gap-5">
               <div className="bg-accent/20 text-2xl text-accent rounded-full h-fit p-2">
@@ -49,7 +49,7 @@ const Interest = () => {
           ))}
         </div>
       </div>
-        <div className="grid grid-cols-2 gap-7 my-5 ml-20">
+        <div className="grid grid-cols-2 gap-5">
           <img
             src={"http://localhost:5888/images/interest/" + data.image1}
             alt={data.image1}

@@ -36,8 +36,8 @@ const ContactForm = () => {
     }, 3000);
   };
   return (
-    <section className="grid grid-cols-3 gap-5 wrapper my-20">
-      <ul className="bg-darkBlue/10 rounded-md h-fit p-7">
+    <section className="grid md:grid-cols-3 gap-5 wrapper my-20 xl:px-0 px-5">
+      <ul className="bg-darkBlue/10 rounded-md md:col-span-1 col-span-2 h-fit p-7">
         <li className="flex items-center gap-2 py-2">
           <span className="bg-accent/30 text-accent rounded-full p-2">
             <FaBuilding />
@@ -74,7 +74,6 @@ const ContactForm = () => {
             <label
               key={index}
               htmlFor={event.name}
-              className="w-full text-thirdary py-1"
             >
               {event.label}
             </label>
@@ -84,11 +83,10 @@ const ContactForm = () => {
               id={event.name}
               placeholder={event.placeholder}
               required
-              className="w-full border border-thirdary p-2 mb-5"
             />
           </>
         ))}
-        <label htmlFor="message" className="w-full text-thirdary py-1">
+        <label htmlFor="message">
           Besked
         </label>
         <textarea
@@ -97,7 +95,6 @@ const ContactForm = () => {
           placeholder="Din besked..."
           rows={5}
           required
-          className="w-full border border-thirdary p-2 mb-5"
         ></textarea>
         <button type="submit"><Button>Send besked</Button> </button>
         {doneMessage && <p className="bg-green-300 text-green-600 text-center border border-green-600 animate-pulse">Besked sendt! 😊</p>}

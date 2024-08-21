@@ -42,3 +42,22 @@ h4 {
   }
 
 }
+
+input {
+  @apply w-full border border-thirdary p-2 mb-5
+}
+
+label {
+  @apply w-full text-thirdary py-1
+}
+
+textarea {
+  @apply w-full border border-thirdary p-2 mb-5
+}
+
+thead tr {
+  @apply uppercase bg-darkPurple text-white sticky top-20
+}
+tbody tr {
+  @apply border-b-2 border-darkPurple hover:bg-darkPurple/10 cursor-pointer
+}

@@ -37,14 +37,14 @@ const Testimonial = () => {
     <section className="grid items-center">
       <Image src={bg} alt="" className="col-start-1 row-start-1"></Image>
       <div className="wrapper col-start-1 row-start-1">
-        <div className="grid grid-cols-2 items-end mb-20">
+        <div className="grid md:grid-cols-2 items-end mb-20 xl:px-0 px-5">
           <div>
             <h3>Hvem vi er</h3>
             <h2>{heroesData[3].title}</h2>
           </div>
-          <p>{heroesData[3].content}</p>
+          <p className="md:mt-0 mt-10">{heroesData[3].content}</p>
         </div>
-        <div className="grid grid-cols-4 gap-7">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-7 xl:px-0 px-5">
           {data.slice(0, 4).map((event) => (
             <div key={event._id} className="relative">
               <div className="absolute right-7 top-7 text-white flex flex-col gap-2">
@@ -52,7 +52,7 @@ const Testimonial = () => {
                   <Link
                     href={event.href}
                     key={index}
-                    className="bg-accent rounded-full p-2"
+                    className="bg-accent rounded-full hover:bg-white hover:text-accent transition p-2"
                   >
                     {event.name}
                   </Link>

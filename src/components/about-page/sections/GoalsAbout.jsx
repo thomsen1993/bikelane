@@ -18,8 +18,8 @@ const GoalsAbout = () => {
   if (!data) return null;
 
   return (
-    <section className="bg-darkBlue/10">
-      <div className="flex justify-between items-center text-center wrapper py-28">
+    <section className="bg-darkBlue/10 px-10">
+      <div className="flex flex-col md:flex-row justify-between items-center text-center wrapper py-28">
         {data.map((event) => (
           <div className="relative">
             <div className="w-fit p-2 text-accent rounded-full border border-accent absolute -top-5 -right-10">

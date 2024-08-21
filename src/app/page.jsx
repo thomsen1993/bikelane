@@ -9,7 +9,7 @@ import Events from "@/components/front-page/sections/Events";
 
 export default function Home() {
   return (
-    <main className="">
+    <main>
       <Hero />
       <Community />
       <Goals />

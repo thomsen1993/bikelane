@@ -11,7 +11,7 @@ import logo from "../../public/logo.png";
 import Link from "next/link";
 
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { FaHome, FaEnvelope } from "react-icons/fa";
+import { FaHome, FaEnvelope, FaArrowUp } from "react-icons/fa";
 
 const Footer = () => {
   const { data, isLoading, error, makeRequest } = useRequestData();
@@ -39,10 +39,10 @@ const Footer = () => {
       <Image
         src={bg}
         alt=""
-        className="col-start-1 row-start-1 bg-darkBlue"
+        className="col-start-1 row-start-1 h-full bg-darkBlue"
       ></Image>
-      <div className=" col-start-1 row-start-1">
-        <div className="grid grid-cols-4 gap-5 border-b border-thirdary wrapper pb-10">
+      <div className=" col-start-1 row-start-1 py-10 xl:px-0 px-5">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-5 border-b border-thirdary wrapper pb-10">
           <div>
             <Image src={logo} alt="" width={120} className="mb-10"></Image>
             <p>
@@ -103,13 +103,12 @@ const Footer = () => {
             <div className="grid grid-cols-3 gap-3 mt-10">
               {eData.slice(0, 6).map((event) => (
                 <figure className="overflow-hidden">
-
-                <img
-                  src={"http://localhost:5888/images/event/" + event.image}
-                  alt=""
-                  className="h-full rounded-md hover:scale-125 hover:rotate-12 transition "
+                  <img
+                    src={"http://localhost:5888/images/event/" + event.image}
+                    alt=""
+                    className="h-full rounded-md hover:scale-125 hover:rotate-12 transition "
                   />
-                  </figure>
+                </figure>
               ))}
             </div>
           </div>
@@ -117,6 +116,9 @@ const Footer = () => {
         <div className="mt-20 wrapper">
           <p>&copy; Copyright 2012 Bikelane.</p>
         </div>
+        <Link href="#top" className="fixed right-10 bottom-10 bg-white text-primary rounded-md border border-primary shadow-md transition hover:bg-primary hover:text-white p-5">
+          <FaArrowUp />
+        </Link>
       </div>
     </footer>
   );
@@ -137,19 +139,19 @@ const links = {
   content: [
     {
       name: "Om os",
-      href: "#",
+      href: "/about",
     },
     {
       name: "Events",
-      href: "#",
+      href: "/events",
     },
     {
       name: "Kontakt",
-      href: "#",
+      href: "/contact",
     },
     {
       name: "Nyheder",
-      href: "#",
+      href: "/news",
     },
   ],
   eventsLinks: [
