@@ -34,7 +34,10 @@ const NavBar = () => {
   if (!data) return null;
 
   return (
-    <header className="wrapper sticky top-2 lg:-top-10 left-0 xl:px-0 px-5 z-40" id="top">
+    <header
+      className="wrapper sticky top-2 lg:-top-10 left-0 xl:px-0 px-5 z-40"
+      id="top"
+    >
       <div className="hidden lg:flex justify-between py-3">
         <div className="flex gap-6">
           <div className="flex items-center gap-3">
@@ -55,6 +58,7 @@ const NavBar = () => {
         <div className="flex gap-3">
           {data.some.map((event) => (
             <Link
+              key={event._id}
               href={event.link}
               target="_blank"
               className="text-lg hover:text-accent transition"
@@ -68,18 +72,19 @@ const NavBar = () => {
         </div>
       </div>
       <nav className="flex items-center justify-between bg-white rounded-md shadow-lg">
-        <Image
-          src={logo}
-          alt="bikeline logo"
-          width={110}
-          className="ml-6 py-5"
-        ></Image>
-        <DesktopNav/>
-        <MobileNav/>
+        <Link href="/">
+          <Image
+            src={logo}
+            alt="bikeline logo"
+            width={110}
+            className="ml-6 py-5"
+          ></Image>
+        </Link>
+        <DesktopNav />
+        <MobileNav />
       </nav>
     </header>
   );
 };
-
 
 export default NavBar;

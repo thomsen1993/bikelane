@@ -14,7 +14,7 @@ const DesktopNav = () => {
   useEffect(() => {
     makeRequest("http://localhost:5888/eventcategories/", "GET", null);
   }, []);
-  
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error... 😒</p>;
 
@@ -36,6 +36,7 @@ const DesktopNav = () => {
                     {data.map((e) => (
                       <li key={e._id}>
                         <Link
+                          key={e._id}
                           href={"/" + e.category}
                           className="hover:bg-thirdary/20 rounded-md block px-5 py-3"
                         >
@@ -58,31 +59,31 @@ const DesktopNav = () => {
 };
 
 const navigation = [
-    {
-      name: "Forside",
-      href: "/",
-      icon: false,
-    },
-    {
-      name: "Om os",
-      href: "/about",
-      icon: false,
-    },
-    {
-      name: "Events",
-      href: "/events",
-      icon: true,
-    },
-    {
-      name: "Kontakt",
-      href: "/contact",
-      icon: false,
-    },
-    {
-      name: "Nyheder",
-      href: "/news",
-      icon: false,
-    },
-  ];
+  {
+    name: "Forside",
+    href: "/",
+    icon: false,
+  },
+  {
+    name: "Om os",
+    href: "/about",
+    icon: false,
+  },
+  {
+    name: "Events",
+    href: "/events",
+    icon: true,
+  },
+  {
+    name: "Kontakt",
+    href: "/contact",
+    icon: false,
+  },
+  {
+    name: "Nyheder",
+    href: "/news",
+    icon: false,
+  },
+];
 
 export default DesktopNav;

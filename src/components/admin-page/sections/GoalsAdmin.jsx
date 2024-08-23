@@ -21,28 +21,36 @@ const GoalsAdmin = () => {
   if (!data) return null;
   return (
     <section className=" grid items-center">
-      <Image src={bg} alt="" className="col-start-1 row-start-1 h-72 object-cover"></Image>
+      <Image
+        src={bg}
+        alt=""
+        className="col-start-1 row-start-1 h-72 object-cover"
+      ></Image>
       <div className="col-start-1 row-start-1">
         <div className="wrapper">
-        <h2>Goals settings</h2>
-        <div className="grid grid-cols-4 gap-5 my-20">
-          {data.map((event) => (
+          <h2>Goals settings</h2>
+          <div className="grid grid-cols-4 gap-5 my-20">
+            {data.map((event) => (
               <button
-              className="text-center border-2 border-transparent rounded-md hover:border-2 hover:border-darkPurple"
-              onClick={() => setEditer(event)}
+                key={event._id}
+                className="text-center border-2 border-transparent rounded-md hover:border-2 hover:border-darkPurple"
+                onClick={() => setEditer(event)}
               >
-              <p>{event.goalcount}</p>
-              <p>{event.goal}</p>
-            </button>
-          ))}
+                <p>{event.goalcount}</p>
+                <p>{event.goal}</p>
+                <p>{event.icon}</p>
+                <p>{event.order}</p>
+              </button>
+            ))}
           </div>
         </div>
       </div>
       {editer && (
         <Editer
-          goals={editer.goalcount}
-          title={editer.goal}
+          goalcount={editer.goalcount}
+          goals={editer.goal}
           order={editer.order}
+          icon={editer.icon}
           id={editer._id}
           setEditer={setEditer}
         />

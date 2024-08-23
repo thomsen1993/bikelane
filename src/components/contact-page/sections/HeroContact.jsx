@@ -11,7 +11,7 @@ const HeroContact = () => {
   const { data, isLoading, error, makeRequest } = useRequestData();
 
   useEffect(() => {
-    makeRequest("http://localhost:5888/heroes/", "GET", null);
+    makeRequest("http://localhost:5888/heroes/653d4aa2c81fe875b0503c69", "GET", null);
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
@@ -27,13 +27,13 @@ const HeroContact = () => {
           className="w-full col-start-1 row-start-1"
         ></Image>
         <div className="col-start-1 row-start-1 text-center wrapper py-10">
-          <h3 className="text-white">{data[4].suptitle}</h3>
-          <h2 className="text-white ">{data[4].title}</h2>
+          <h3 className="text-white">{data.suptitle}</h3>
+          <h2 className="text-white ">{data.title}</h2>
         </div>
       </div>
       <article className="wrapper">
         <img
-          src={"http://localhost:5888/images/hero/" + data[4].image}
+          src={"http://localhost:5888/images/hero/" + data.image}
           alt=""
           className="w-full max-h-[30rem] object-cover rounded-xl xl:-mt-52 sm:-mt-10 -mt-2 xl:px-0 px-5"
         />

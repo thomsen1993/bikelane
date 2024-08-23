@@ -10,6 +10,10 @@ const HeroesAdmin = () => {
 
   const [editer, setEditer] = useState(null);
 
+  const getFewWords = (message) => {
+    return message.split(" ").slice(0, 10).join(" ");
+  };
+
   useEffect(() => {
     makeRequest("http://localhost:5888/heroes", "GET", null);
   }, []);
@@ -30,18 +34,21 @@ const HeroesAdmin = () => {
         </thead>
         <tbody>
           {data.map((event) => (
-            <tr
-              key={event._id}
-              onClick={() => setEditer(event)}
-            >
+            <tr key={event._id} onClick={() => setEditer(event)}>
               <td>{event.title}</td>
               <td>{event.suptitle}</td>
-              <td>{event.content}</td>
+              <td>{getFewWords(event.content)}</td>
               <td>{event.buttontext}</td>
               <td>{event.buttonlink}</td>
               <td>{event.videolink}</td>
               <td>
-                <img src={"http://localhost:5888/images/hero/" + event.image} alt=""/>
+                {event.image && (
+                  <img
+                    src={"http://localhost:5888/images/hero/" + event.image}
+                    alt=""
+                    className="h-28 w-full object-cover"
+                  />
+                )}
               </td>
             </tr>
           ))}

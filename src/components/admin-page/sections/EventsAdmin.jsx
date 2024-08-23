@@ -4,10 +4,16 @@ import React, { useEffect, useState } from "react";
 
 import useRequestData from "@/hooks/useRequestData";
 import Editer from "@/components/Editer";
+import Add from "@/components/Add";
 
 const EventsAdmin = () => {
   const { data, isLoading, error, makeRequest } = useRequestData();
   const [editer, setEditer] = useState(null);
+  const [add, setAdd] = useState(null);
+
+  const getFewWords = (message) => {
+    return message.split(" ").slice(0, 10).join(" ");
+  };
 
   useEffect(() => {
     makeRequest("http://localhost:5888/events", "GET", null);
@@ -20,7 +26,7 @@ const EventsAdmin = () => {
   return (
     <section className="wrapper my-10">
       <h2>Events settings</h2>
-      <table className="my-2">
+      <table className="mt-2">
         <thead>
           <tr>
             {head.map((e, i) => (
@@ -30,10 +36,10 @@ const EventsAdmin = () => {
         </thead>
         <tbody>
           {data.map((event) => (
-            <tr>
+            <tr key={event._id} onClick={() => setEditer(event)}>
               <td>{event.title}</td>
               <td>
-                <div dangerouslySetInnerHTML={{ __html: event.content }}></div>
+                <div dangerouslySetInnerHTML={{ __html: getFewWords(event.content) }}></div>
               </td>
               <td>{event.eventdate}</td>
               <td>{event.destination}</td>
@@ -50,6 +56,27 @@ const EventsAdmin = () => {
           ))}
         </tbody>
       </table>
+      <button
+        className="border-x-2 border-b-2 border-green-700 text-xl text-center w-full hover:bg-green-300/50"
+        onClick={() => setAdd(true)}
+      >
+        +
+      </button>
+      {editer && (
+        <Editer
+          id={editer._id}
+          title={editer.title}
+          contentQuill={editer.content}
+          destination={editer.destination}
+          coordinates={editer.coordinates}
+          distance={editer.distance}
+          difficulty={editer.difficulty}
+          // date={editer.eventdate}
+          deleteBtn="Delete"
+          setEditer={setEditer}
+        />
+      )}
+      {add && <Add setAdd={setAdd}/>}
     </section>
   );
 };

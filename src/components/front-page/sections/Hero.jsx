@@ -32,7 +32,7 @@ const Hero = () => {
         <div className="mr-20">
           <h1>{data.title}</h1>
           <p className="py-10">{data.content}</p>
-          <Button href={data.buttonlink}>{data.buttontext}</Button>
+          <Button href={"/" + data.buttonlink}>{data.buttontext}</Button>
         </div>
         <figure className="justify-self-end group">
           <button onClick={() => setVideo(true)}>
@@ -51,7 +51,7 @@ const Hero = () => {
       {video && (
         <Video
           close={() => setVideo(false)}
-          videoSrc="https://www.youtube.com/embed/H55W1NhAbQo?si=qD9BUWz_FpANsC5o"
+          videoSrc={data.videolink}
         />
       )}
     </section>

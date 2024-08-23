@@ -47,6 +47,10 @@ input {
   @apply w-full border border-thirdary p-2 mb-5
 }
 
+input:disabled {
+  @apply text-thirdary cursor-not-allowed
+}
+
 label {
   @apply w-full text-thirdary py-1
 }
@@ -55,7 +59,7 @@ textarea {
   @apply w-full border border-thirdary p-2 mb-5
 }
 
-thead tr {
+thead th {
   @apply uppercase bg-darkPurple text-white sticky top-20
 }
 tbody tr {

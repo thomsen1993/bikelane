@@ -72,7 +72,7 @@ const Footer = () => {
             </h4>
             <ul className="pt-5">
               {links.eventsLinks.map((event, index) => (
-                <li className="flex items-center my-5 group">
+                <li className="flex items-center my-5 group" key={index}>
                   <MdKeyboardArrowRight className="text-accent text-xl group-hover:translate-x-1 transition" />
                   <Link key={index} href={event.href}>
                     {event.name}
@@ -87,7 +87,7 @@ const Footer = () => {
             </h4>
             <ul className="pt-5">
               {links.content.map((event, index) => (
-                <li className="flex items-center my-5 group">
+                <li className="flex items-center my-5 group" key={index}>
                   <MdKeyboardArrowRight className="text-accent text-xl group-hover:translate-x-1 transition" />
                   <Link key={index} href={event.href}>
                     {event.name}

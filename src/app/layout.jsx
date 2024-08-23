@@ -3,7 +3,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Bikelane - Vandkantens bedste",
+  title: "Bikelane - Vandkantens bedste cykelklub",
   description: "",
 };
 

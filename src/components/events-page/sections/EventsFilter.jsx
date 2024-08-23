@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 
 import useRequestData from "@/hooks/useRequestData";
 
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import PopUp from "@/components/PopUp";
+
 const EventsFilter = () => {
   const { data, isLoading, error, makeRequest } = useRequestData();
   const {
@@ -14,6 +17,7 @@ const EventsFilter = () => {
   } = useRequestData();
 
   const [filter, setFilter] = useState("Alle");
+  const [extra, setExtra] = useState(false);
 
   useEffect(() => {
     makeRequest("http://localhost:5888/eventcategories/", "GET", null);
@@ -39,20 +43,26 @@ const EventsFilter = () => {
           <button
             key={event._id}
             onClick={() => setFilter(event.category)}
-            className={`pb-2 hover:border-b hover:border-primary border-b ${filter === event.category ? "border-b border-primary" : "border-transparent"}`}
+            className={`pb-2 hover:border-b hover:border-primary border-b ${
+              filter === event.category
+                ? "border-b border-primary"
+                : "border-transparent"
+            }`}
           >
             {event.category}
           </button>
         ))}
       </div>
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5 border-b pb-20 mb-20">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5 ">
         {filteredEvents.map((event) => (
-          <div>
-            <img
-              src={"http://localhost:5888/images/event/" + event.image}
-              alt=""
-              className="h-72 w-full object-cover rounded-xl"
-            />
+          <button className="text-start group" onClick={() => setExtra(event)}>
+            <figure className=" overflow-hidden rounded-xl">
+              <img
+                src={"http://localhost:5888/images/event/" + event.image}
+                alt=""
+                className="h-72 w-full object-cover rounded-xl group-hover:rotate-12 group-hover:scale-150 group-hover:brightness-50 transition"
+              />
+            </figure>
             <div className="mt-5">
               <p className="text-accent">
                 <span>
@@ -66,11 +76,49 @@ const EventsFilter = () => {
               </p>
               <h4>{event.title}</h4>
             </div>
-          </div>
+          </button>
         ))}
       </div>
+      <div className="flex items-center border-b mt-10 pb-20 mb-20">
+        {pagination.map((event) => (
+          <button className="border-l border-y first-of-type:rounded-l-md last-of-type:border-r last-of-type:rounded-r-md text-sm text-primary hover:bg-accent hover:text-white transition h-10 px-4">
+            {event.name}
+          </button>
+        ))}
+      </div>
+      {extra && (
+        <PopUp
+          src={"http://localhost:5888/images/event/" + extra.image}
+          category={extra.category.category}
+          title={extra.title}
+          content={extra.content}
+          destination={extra.destination}
+          distance={extra.distance}
+          date={extra.eventdate}
+          difficulty={extra.difficulty}
+          close={() => setExtra(false)}
+        />
+      )}
     </section>
   );
 };
+
+const pagination = [
+  {
+    name: <FaArrowLeft />,
+  },
+  {
+    name: 1,
+  },
+  {
+    name: 2,
+  },
+  {
+    name: 3,
+  },
+  {
+    name: <FaArrowRight />,
+  },
+];
 
 export default EventsFilter;

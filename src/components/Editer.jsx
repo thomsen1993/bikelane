@@ -17,48 +17,92 @@ const Editer = ({
   buttonlink,
   id,
   goals,
+  goalcount,
   order,
+  icon,
   setEditer,
+  deleteBtn,
+  date,
+  destination,
+  coordinates,
+  distance,
+  difficulty,
 }) => {
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedSubtitle, setEditedSubtitle] = useState(subtitle);
   const [editedContent, setEditedContent] = useState(content);
-  //   const [editedContentQuill, setEditedContentQuill] = useState(contentQuill);
+  const [editedContentQuill, setEditedContentQuill] = useState(contentQuill);
   const [editedLink, setEditedLink] = useState(link);
   const [editedButtonText, setEditedButtonText] = useState(buttontext);
   const [editedButtonLink, setEditedButtonLink] = useState(buttonlink);
-  const [editedGoals, setEditedGoals] = useState(goals);
-  const [editedOrder, setEditedOrder] = useState(order);
+  const [editedGoalcount, setEditedGoalcount] = useState(goalcount);
+  const [editedDate, setEditedDate] = useState(date);
+  const [editedDestination, setEditedDestination] = useState(destination);
+  const [editedCoordinates, setEditedCoordinates] = useState(coordinates);
+  const [editedDistance, setEditedDistance] = useState(distance);
+  const [editedDifficulty, setEditedDifficulty] = useState(difficulty);
+  const [imageFile, setImageFile] = useState(null);
 
   const { makeRequest } = useRequestData();
-
-  const refQuill = useRef(null);
+  const { makeRequest: delMakeRequest } = useRequestData();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const fd = new FormData();
-    fd.append("title", editedTitle);
-    fd.append("subtitle", editedSubtitle);
-    fd.append("content", editedContent);
-    fd.append("content", refQuill.current.value);
-    fd.append("buttontext", editedButtonText);
-    fd.append("buttonlink", editedButtonLink);
-    fd.append("videolink", editedLink);
-    fd.append("goals", editedGoals);
-    fd.append("order", editedOrder);
-    fd.append("image", e.target.elements.image.files[0]);
+    if (title) fd.append("title", editedTitle);
+    if (subtitle) fd.append("subtitle", editedSubtitle);
+    if (content) {
+      fd.append("content", editedContent);
+      fd.append("buttontext", editedButtonText);
+      fd.append("buttonlink", editedButtonLink);
+      fd.append("videolink", editedLink);
+    }
+    if (contentQuill) {
+      fd.append("content", editedContentQuill);
+      fd.append("destination", editedDestination);
+      fd.append("distance", editedDistance);
+      fd.append("difficulty", editedDifficulty);
+      fd.append("coordinates", editedCoordinates);
+    }
+    if (goals) {
+      fd.append("goals", goals);
+      fd.append("goalcount", editedGoalcount);
+      fd.append("order", order);
+      fd.append("icon", icon);
+    }
+    if (imageFile) {
+      fd.append("image", imageFile);
+    }
 
-    makeRequest("http://localhost:5888/heroes/admin/" + id, "PUT", fd);
+    if (goals) {
+      makeRequest("http://localhost:5888/goals/admin/" + id, "PUT", fd);
+    }
+    if (content) {
+      makeRequest("http://localhost:5888/heroes/admin/" + id, "PUT", fd);
+    }
+    if (contentQuill) {
+      makeRequest("http://localhost:5888/events/admin/" + id, "PUT", fd);
+    }
     setEditer(null);
     window.location.reload();
+  };
+
+  const handleDelete = () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
+    if (confirmed) {
+      delMakeRequest("http://localhost:5888/events/admin/" + id, "DELETE");
+      window.location.reload();
+    }
   };
 
   return (
     <div className="fixed top-0 left-0 w-full h-screen bg-black/30 backdrop-blur-sm z-50">
       <form
         onSubmit={handleSubmit}
-        className="border-2 border-darkPurple bg-white wrapper h-screen overflow-y-scroll p-4"
+        className="border-2 border-darkPurple bg-white wrapper h-[90%] overflow-y-scroll p-4"
       >
         <div className="flex justify-between items-center text-2xl mb-5">
           <p className="text-accent">Edit</p>
@@ -81,6 +125,7 @@ const Editer = ({
               name="title"
               value={editedTitle}
               onChange={(e) => setEditedTitle(e.target.value)}
+              required
             />
           </>
         )}
@@ -93,6 +138,7 @@ const Editer = ({
               name="subtitle"
               value={editedSubtitle}
               onChange={(e) => setEditedSubtitle(e.target.value)}
+              required
             />
           </>
         )}
@@ -114,15 +160,10 @@ const Editer = ({
             <ReactQuill
               id="contentQuill"
               theme="snow"
-              ref={refQuill}
+              value={editedContentQuill}
+              onChange={setEditedContentQuill}
+              required
             />
-            <textarea
-              id="content"
-              name="content"
-              value={contentQuill}
-              onChange={(e) => setEditedContentQuill(e.target.value)}
-              rows={10}
-            ></textarea>
           </>
         )}
         {buttontext && (
@@ -159,41 +200,123 @@ const Editer = ({
               value={editedLink}
               onChange={(e) => setEditedLink(e.target.value)}
             />
-            <label htmlFor="image">Image</label>
-            <input type="file" name="image" id="image" />
           </>
         )}
         {goals && (
           <>
             <label htmlFor="goal">Goal</label>
+            <input type="text" name="goal" id="goal" value={goals} disabled />
+            <label htmlFor="goalcount">Goal count</label>
             <input
               type="number"
               name="goalcount"
-              id="goal"
-              value={editedGoals}
-              onChange={(e) => setEditedGoals(e.target.value)}
+              id="goalcount"
+              value={editedGoalcount}
+              onChange={(e) => setEditedGoalcount(e.target.value)}
             />
-          </>
-        )}
-        {order && (
-          <>
             <label htmlFor="order">Order</label>
             <input
               type="number"
               name="order"
               id="order"
-              value={editedOrder}
-              onChange={(e) => setEditedOrder(e.target.value)}
+              value={order}
+              disabled
+            />
+            <label htmlFor="icon">Icon</label>
+            <input type="text" name="icon" id="icon" value={icon} disabled />
+          </>
+        )}
+        {date && (
+          <>
+            <label htmlFor="eventdate">Event date {editedDate}</label>
+            <input
+              type="date"
+              name="eventdate"
+              id="eventdate"
+              value={editedDate}
+              onChange={(e) => setEditedDate(e.target.value)}
+              required
             />
           </>
         )}
-        <div className="flex justify-end">
+        {destination && (
+          <>
+            <label htmlFor="destination">Destination</label>
+            <input
+              type="text"
+              name="destination"
+              id="destination"
+              value={editedDestination}
+              onChange={(e) => setEditedDestination(e.target.value)}
+              required
+            />
+          </>
+        )}
+        {coordinates && (
+          <>
+            <label htmlFor="coordinates">Coordinates</label>
+            <input
+              type="text"
+              name="coordinates"
+              id="coordinates"
+              value={editedCoordinates}
+              onChange={(e) => setEditedCoordinates(e.target.value)}
+              required
+            />
+          </>
+        )}
+        {distance && (
+          <>
+            <label htmlFor="distance">Distance</label>
+            <input
+              type="number"
+              name="distance"
+              id="distance"
+              value={editedDistance}
+              onChange={(e) => setEditedDistance(e.target.value)}
+              required
+            />
+          </>
+        )}
+        {difficulty && (
+          <>
+            <label htmlFor="difficulty">Difficulty</label>
+            <input
+              type="text"
+              name="difficulty"
+              id="difficulty"
+              value={editedDifficulty}
+              onChange={(e) => setEditedDifficulty(e.target.value)}
+              required
+            />
+          </>
+        )}
+        {!goals && (
+          <>
+            <label htmlFor="image">Image</label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              onChange={(e) => setImageFile(e.target.files[0])}
+            />
+          </>
+        )}
+        <div className="flex justify-end gap-2">
           <button
             type="submit"
             className="px-4 py-2 bg-green-700 text-white rounded"
           >
             Save
           </button>
+          {deleteBtn && (
+            <button
+              className="px-4 py-2 bg-red-700 text-white rounded"
+              onClick={handleDelete}
+            >
+              {deleteBtn}
+            </button>
+          )}
         </div>
       </form>
     </div>
